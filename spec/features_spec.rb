@@ -7,7 +7,7 @@ describe 'Game' do
       [0,0,0],
       [0,0,0]
     ]
-    game = Game.new
+    game = Game.new(board)
     expect(game.board).to eq board
   end
 end
