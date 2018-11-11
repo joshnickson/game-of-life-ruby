@@ -12,8 +12,8 @@ describe 'Game' do
     expect(game.board).to eq empty_board
   end
   
-  it 'cell dies if fewer than 2 live neighbors' do
-  board_2 = [
+  it 'cell dies if fewer than 2 live neighbours' do
+    board_2 = [
       [0,0,0],
       [0,1,0],
       [0,0,0]
@@ -22,4 +22,16 @@ describe 'Game' do
     game.evolve
     expect(game.board).to eq empty_board
   end
+  
+  it 'cell dies if more than three live neighbours' do
+    board_3 = [
+      [0,1,0],
+      [0,1,1],
+      [0,1,1]
+    ]
+    game = Game.new(board_3)
+    game.evolve
+    expect(game.board[1][1]).to eq 0
+  end
+  
 end

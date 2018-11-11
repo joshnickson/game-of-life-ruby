@@ -14,19 +14,21 @@ class Game
     @board = new_state
   end
   
-  def check_neighbours(cell, row, col)
-    get_neighbours(cell, row, col).count(1) >= 2    
-  end
+  private 
   
-  def get_neighbours(cell, row, col)
-    neighbours = []
-    if (row != 0)
-      neighbours.concat([@board[row-1][col-1], @board[row-1][col], @board[row-1][col+1]])
-    end 
-    neighbours.concat([@board[row][col-1], @board[row][col+1] == 1])
-    if (row != (@board.size - 1))
-      neighbours.concat([@board[row+1][col-1], @board[row+1][col], @board[row+1][col+1]])
+    def check_neighbours(cell, row, col)
+      get_neighbours(cell, row, col).count(1) >= 2 && get_neighbours(cell, row, col).count(1) > 3  
     end
-    neighbours
+  
+    def get_neighbours(cell, row, col)
+      neighbours = []
+      if (row != 0)
+        neighbours.concat([@board[row-1][col-1], @board[row-1][col], @board[row-1][col+1]])
+      end 
+      neighbours.concat([@board[row][col-1], @board[row][col+1] == 1])
+      if (row != (@board.size - 1))
+        neighbours.concat([@board[row+1][col-1], @board[row+1][col], @board[row+1][col+1]])
+      end
+      neighbours
   end
 end
